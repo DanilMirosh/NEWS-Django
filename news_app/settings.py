@@ -99,5 +99,9 @@ CELERY_BEAT_SCHEDULE = {
     'send_news_email': {
         'task': 'news.task.send_news_email',
         'schedule': crontab(hour=8),  # Время отправки email
+    },
+    'fetch_weather_summary': {
+        'task': 'news.tasks.fetch_weather_summary',
+        'schedule': crontab(hour=8),  # Периодичность выполнения задачи
     }
 }

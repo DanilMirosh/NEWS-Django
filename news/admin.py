@@ -4,3 +4,4 @@ from news.models import News, Place
 
 admin.site.register(News)
 admin.site.register(Place)
+admin.site.register()

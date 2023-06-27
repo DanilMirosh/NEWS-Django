@@ -14,3 +14,13 @@ class Place(models.Model):
     name = models.CharField(max_length=200)
     coordinates = models.PointField()
     rating = models.IntegerField()
+
+
+class WeatherSummary(models.Model):
+    place = models.ForeignKey(Place, on_delete=models.CASCADE)
+    date = models.DateField()
+    temperature = models.DecimalField(max_digits=5, decimal_places=2)
+    humidity = models.DecimalField(max_digits=5, decimal_places=2)
+    pressure = models.DecimalField(max_digits=5, decimal_places=2)
+    wind_direction = models.CharField(max_length=50)
+    wind_speed = models.DecimalField(max_digits=5, decimal_places=2)
