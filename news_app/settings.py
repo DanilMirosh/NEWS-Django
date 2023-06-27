@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from celery.schedules import crontab
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure--@y=uua_jn+529f8x*$yf#^r08i@&3%4u9_6@iqd&2hqp%_!%j'
@@ -90,3 +92,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SUMMERNOTE_THEME = 'bs4'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BEAT_SCHEDULE = {
+    'send_news_email': {
+        'task': 'news.task.send_news_email',
+        'schedule': crontab(hour=8),  # Время отправки email
+    }
+}
